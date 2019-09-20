@@ -15,8 +15,9 @@
                            [gorilla-renderable "2.0.0"]
                            [gorilla-plot "0.1.4" :exclusions [org.clojure/clojure]]
                            [grimradical/clj-semver "0.2.0" :exclusions [org.clojure/clojure]]
-                           [cider/cider-nrepl "0.18.0" :exclusions [org.clojure/clojure]]
-                           [nrepl/nrepl "0.5.0-SNAPSHOT"]]
+                           [cider/cider-nrepl "0.22.3" :exclusions [org.clojure/clojure]]
+                           [nrepl/nrepl "0.6.0"]
+                           [clojure-complete "0.2.5"]]
   :main ^:skip-aot gorilla-repl.core
   :target-path "target/%s"
   :jvm-opts ~(let [version    (System/getProperty "java.version")
