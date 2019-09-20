@@ -2,7 +2,6 @@
   (:require [gorilla-repl.websocket-relay :as ws-relay]
             [nrepl.server :as nrepl-server]
             [nrepl.middleware.print :as print]
-            [gorilla-repl.render-values-mw :as render-mw]
             [cider.nrepl :as cider]
             [clojure.java.io :as io]))
 

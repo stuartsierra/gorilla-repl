@@ -5,12 +5,12 @@
 (ns gorilla-repl.render-values-mw
   (:require [nrepl.transport :as transport]
             [nrepl.middleware :as middleware]
+            [nrepl.middleware.print]
             [gorilla-renderable.core :as render]
             [cheshire.core :as json])
   (:import nrepl.transport.Transport))
 
 (defn custom-renderer
-   [value writer opts]
-   (let [printer (if *print-dup* print-dup print-method)]
-     (printer (json/generate-string (render/render value)) writer)
-     (str writer)))
+  [value writer opts]
+  (let [printer (if *print-dup* print-dup print-method)]
+    (printer (json/generate-string (render/render value)) writer)))

@@ -30,7 +30,8 @@
 
 (defn- process-message
   [channel data]
-  (let [parsed-message (assoc (json/parse-string data true) ::print/print `render-mw/custom-renderer)
+  (let [parsed-message (assoc (json/parse-string data true)
+                              ::print/print `render-mw/custom-renderer)
         client (nrepl/client @conn Long/MAX_VALUE)
         replies (nrepl/message client parsed-message)]
     ;; send the messages out over the WS connection one-by-one.
