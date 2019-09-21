@@ -178,6 +178,15 @@ commandList = [
         }
     },
     {
+        name: "command:app:reload",
+        desc: "Reload the current worksheet.",
+        showInMenu: true,
+        kb: combo('g', 'r'),
+        action: function () {
+            eventBus.trigger("app:reload");
+        }
+    },
+    {
         name: "command:app:save",
         desc: "Save the worksheet.",
         showInMenu: true,

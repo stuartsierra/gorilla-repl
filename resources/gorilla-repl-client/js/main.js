@@ -197,6 +197,13 @@ var app = function () {
         });
     });
 
+    eventBus.on("app:reload", function () {
+        var fname = self.filename();
+        if (fname !== "") {
+            loadFromFile(fname);
+        }
+    });
+
     // Save logic is a bit confusing. This event will be triggered if the user commands a save. If there's a filename
     // we save using the helper above, and are done. If not, we put up the save dialog. If the user completes the save
     // dialog then it fires a callback which does the actual saving and stores the filename (see
