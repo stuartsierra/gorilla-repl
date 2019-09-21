@@ -140,7 +140,7 @@ var app = function () {
         });
     };
 
-    var loadFromFile = function (filename) {
+    var loadFromFile = function (filename, activeSegmentIndex) {
         // ask the backend to load the data from disk
         $.get(createPath('load'), {"worksheet-filename": filename})
             .done(function (data) {
@@ -153,7 +153,9 @@ var app = function () {
                     self.setWorksheet(ws, filename);
                     // highlight the first code segment if it exists
                     var codeSegments = _.filter(self.worksheet().segments(), function(s) {return s.type === 'code'});
-                    if (codeSegments.length > 0)
+                    if (activeSegmentIndex !== undefined && segments[activeSegmentIndex] !== undefined) {
+                        eventBus.trigger("worksheet:segment-clicked", {id: segments[activeSegmentIndex].id});
+                    } else if (codeSegments.length > 0)
                         eventBus.trigger("worksheet:segment-clicked", {id: codeSegments[0].id});
                 }
             })
@@ -200,7 +202,8 @@ var app = function () {
     eventBus.on("app:reload", function () {
         var fname = self.filename();
         if (fname !== "") {
-            loadFromFile(fname);
+            var activeSegmentIndex = self.worksheet().activeSegmentIndex;
+            loadFromFile(fname, activeSegmentIndex);
         }
     });
 
