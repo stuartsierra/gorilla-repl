@@ -21,8 +21,8 @@ var render = function (data, element, errorCallback) {
         if (ed.altKey) {
             var value = $(this).attr('data-value');
             eventBus.trigger("app:show-value", value);
-        }
-        return false;
+            return false;
+        } else return true;
     });
 };
 
