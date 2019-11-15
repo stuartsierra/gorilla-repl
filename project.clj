@@ -18,6 +18,8 @@
                            [cider/cider-nrepl "0.22.3" :exclusions [org.clojure/clojure]]
                            [nrepl/nrepl "0.6.0"]
                            [clojure-complete "0.2.5"]]
+  :plugins [[lein-pprint "1.2.0"]
+            [lein-ancient "0.6.15"]]
   :main ^:skip-aot gorilla-repl.core
   :target-path "target/%s"
   :jvm-opts ~(let [version    (System/getProperty "java.version")
