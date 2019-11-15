@@ -6,27 +6,22 @@
   :description "A rich REPL for Clojure in the notebook style."
   :url "https://github.com/benfb/gorilla-repl"
   :license {:name "MIT"}
-  :dependencies ^:replace [[org.clojure/clojure "1.9.0"]
+  :dependencies ^:replace [[org.clojure/clojure "1.10.1"]
                            [http-kit "2.3.0" :exclusions [ring/ring-core]]
-                           [ring/ring-json "0.4.0" :exclusions [org.clojure/clojure]]
-                           [cheshire "5.8.1"]
+                           [ring/ring-json "0.5.0" :exclusions [org.clojure/clojure]]
+                           [cheshire "5.9.0"]
                            [compojure "1.6.1" :exclusions [ring/ring-core ring/ring-json] ]
                            [ch.qos.logback/logback-classic "1.2.3"]
                            [gorilla-renderable "2.0.0"]
                            [gorilla-plot "0.1.4" :exclusions [org.clojure/clojure]]
-                           [grimradical/clj-semver "0.2.0" :exclusions [org.clojure/clojure]]
-                           [cider/cider-nrepl "0.22.3" :exclusions [org.clojure/clojure]]
+                           [grimradical/clj-semver "0.3.0" :exclusions [org.clojure/clojure]]
+                           [cider/cider-nrepl "0.22.4" :exclusions [org.clojure/clojure]]
                            [nrepl/nrepl "0.6.0"]
                            [clojure-complete "0.2.5"]]
   :plugins [[lein-pprint "1.2.0"]
             [lein-ancient "0.6.15"]]
   :main ^:skip-aot gorilla-repl.core
   :target-path "target/%s"
-  :jvm-opts ~(let [version    (System/getProperty "java.version")
-                  [major _ _] (clojure.string/split version #"\.")]
-               (if (>= (java.lang.Integer/parseInt major) 9)
-                 ["--add-modules" "java.xml.bind"]
-                 []))
   :release-tasks [["vcs" "assert-committed"]
                   ["change" "version" "leiningen.release/bump-version" "release"]
                   ["vcs" "commit"]
